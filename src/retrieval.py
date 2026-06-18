@@ -59,3 +59,11 @@ for i in range(len(query_subset)):
 
     retrieved_labels = gallery_labels[topk_indices[i]]
     print("Retrieved labels:", retrieved_labels.tolist())
+
+
+#save results into files, so we can access them easily
+
+torch.save(gallery_features, "gallery_features.pt")
+torch.save(gallery_labels, "gallery_labels.pt")
+torch.save(query_features, "query_features.pt")
+torch.save(query_labels, "query_labels.pt")
