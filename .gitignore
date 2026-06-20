@@ -1,0 +1,16 @@
+# datasets (too large for git)
+data/
+
+# generated feature tensors from retrieval.py
+*.pt
+# …but keep the trained checkpoint so member 3 can load it
+!checkpoints/*.pt
+
+# misc
+*.npy
+*.zip
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+.idea/
