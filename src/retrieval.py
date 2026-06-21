@@ -27,8 +27,8 @@ model, transform = build_feature_extractor(
 gallery_dataset = CIFAR10(root="data", train=True, download=False, transform=transform)
 query_dataset = CIFAR10(root="data", train=False, download=False, transform=transform)
 
-gallery_subset = Subset(gallery_dataset, range(1000))
-query_subset = Subset(query_dataset, range(10))
+gallery_subset = Subset(gallery_dataset, range(5000))
+query_subset = Subset(query_dataset, range(100))
 
 gallery_loader = DataLoader(gallery_subset, batch_size=32, shuffle=False)
 query_loader = DataLoader(query_subset, batch_size=32, shuffle=False)
@@ -67,7 +67,7 @@ for i in range(len(query_subset)):
 
 #save results into files, so we can access them easily
 
-torch.save(gallery_features, "gallery_features.pt")
-torch.save(gallery_labels, "gallery_labels.pt")
-torch.save(query_features, "query_features.pt")
-torch.save(query_labels, "query_labels.pt")
+torch.save(gallery_features, f"gallery_features_{MODE}.pt")
+torch.save(gallery_labels, f"gallery_labels_{MODE}.pt")
+torch.save(query_features, f"query_features_{MODE}.pt")
+torch.save(query_labels, f"query_labels_{MODE}.pt")

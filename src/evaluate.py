@@ -2,12 +2,14 @@ from metrics import recall_at_k, mean_average_precision
 import torch
 
 
-gallery_features = torch.load("gallery_features.pt")
-gallery_labels = torch.load("gallery_labels.pt")
-query_features = torch.load("query_features.pt")
-query_labels = torch.load("query_labels.pt")
+MODE = "trained" #or trained
 
 
+
+gallery_features = torch.load(f"gallery_features_{MODE}.pt")
+gallery_labels = torch.load(f"gallery_labels_{MODE}.pt")
+query_features = torch.load(f"query_features_{MODE}.pt")
+query_labels = torch.load(f"query_labels_{MODE}.pt")
 
 
 
@@ -21,7 +23,7 @@ topk_values, topk_indices = torch.topk(similarities, k=10, dim=1)
 #print("query_labels shape:", query_labels.shape)
 #print("topk_indices shape:", topk_indices.shape)
 
-
+print("Current Model: " + MODE)
 
 recall1 = recall_at_k(topk_indices, query_labels, gallery_labels, k=1)
 recall5 = recall_at_k(topk_indices, query_labels, gallery_labels, k=5)

@@ -3,10 +3,14 @@ import matplotlib.pyplot as plt
 from torchvision.datasets import CIFAR10
 from torchvision import transforms
 
-gallery_features = torch.load("gallery_features.pt")
-gallery_labels = torch.load("gallery_labels.pt")
-query_features = torch.load("query_features.pt")
-query_labels = torch.load("query_labels.pt")
+MODE = "trained" #or trained
+
+
+
+gallery_features = torch.load(f"gallery_features_{MODE}.pt")
+gallery_labels = torch.load(f"gallery_labels_{MODE}.pt")
+query_features = torch.load(f"query_features_{MODE}.pt")
+query_labels = torch.load(f"query_labels_{MODE}.pt")
 
 
 transform = transforms.Compose([
@@ -25,7 +29,7 @@ plot = plt.figure(figsize=(12, 8))
 for idx in range(5):
     ax = plot.add_subplot(5, 6, (idx*6)+1, xticks=[], yticks=[])
     img = query_dataset[idx][0]
-    
+    ax.set_title(query_dataset.classes[query_labels[idx]], color='black')
     ax.imshow(img.numpy().transpose(1, 2, 0))
 
     for q in range(5):
@@ -40,6 +44,6 @@ for idx in range(5):
 
 
 plt.tight_layout()
-plt.suptitle('Visualization of sample retrieval hits', size=14)
+plt.suptitle('Visualization of sample retrieval hits' + ' (' + MODE + ')', size=14)
 plt.subplots_adjust(top=0.9)
 plt.show()
