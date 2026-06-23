@@ -15,7 +15,7 @@ def recall_at_k(topk_indices, query_labels, gallery_labels, k):
 
 def mean_average_precision(topk_indices, query_labels, gallery_labels):
     
-    avg_precisions = np.zeros_like(query_labels)
+    avg_precisions = np.zeros_like(query_labels, dtype=float)
 
     for x in range(len(query_labels)):
         current = query_labels[x]
