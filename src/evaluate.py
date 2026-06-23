@@ -2,7 +2,7 @@ from metrics import recall_at_k, mean_average_precision
 import torch
 
 
-MODE = "trained" #or trained
+MODE = "trained" #use "baseline" or "trained"
 
 
 

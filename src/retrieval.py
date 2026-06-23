@@ -54,7 +54,7 @@ query_features, query_labels = extract_features(query_loader)
 
 similarities = query_features @ gallery_features.T
 
-top_k = 5
+top_k = 10
 topk_values, topk_indices = torch.topk(similarities, k=top_k, dim=1)
 
 for i in range(len(query_subset)):
